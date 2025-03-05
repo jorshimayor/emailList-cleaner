@@ -4,8 +4,10 @@ import pandas as pd
 file_path = "emails.csv"  # Change this to your actual CSV file path
 df = pd.read_csv(file_path)
 
+valid_domains = ["@gmail.com", "@yahoo.com", "@outlook.com"] 
+
 # Assuming the emails are in a column named 'email'
-filtered_df = df[df['email'].str.endswith('@gmail.com', na=False)]
+filtered_df = df[df['email'].str.endswith(tuple(valid_domains), na=False)]
 
 # Remove duplicate emails
 filtered_df = filtered_df.drop_duplicates(subset=['email'])
